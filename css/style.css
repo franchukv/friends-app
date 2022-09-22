@@ -1,0 +1,274 @@
+@import url(./reset.css);
+
+:root {
+    --main-bg-color: #fff;
+    --text-color: #000;
+
+    --inverse-bg-color: #000;
+    --inverse-text-color: #fff;
+}
+
+:root[theme='dark'] {
+    --main-bg-color: #000;
+    --text-color: #fff;
+
+    --inverse-bg-color: #fff;
+    --inverse-text-color: #000;
+}
+
+ul li {
+    list-style: none;
+}
+
+body {
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    max-width: 1215px;
+    padding: 0 20px;
+    margin: 0 auto;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+}
+
+/* Start Options Popup */
+/* #options {
+    display: none;
+} */
+
+#toggle {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 40px;
+    width: 75px;
+    background-color: #15181f;
+    position: absolute;
+    right: 0;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#toggle:after {
+    content: "";
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: #ffffff;
+    top: 5px;
+    left: 7px;
+    border-radius: 50%;
+}
+
+:root[theme='dark'] #toggle {
+    background-color: #ffffff;
+}
+
+:root[theme='dark'] #toggle:after {
+    background-color: transparent;
+    box-shadow: 10px 10px #15181f;
+    top: -4px;
+    left: 30px;
+}
+
+/* End Options Popup */
+
+
+/* Start Placeholders */
+.ph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 5px;
+    background-color: var(--inverse-bg-color);
+    color: var(--inverse-text-color);
+    width: calc(20% - 10px);
+    min-width: 233px;
+    height: auto;
+}
+
+.ph-picture {
+    margin-top: 15px;
+    width: 80%;
+    min-height: 185px;
+    background-color: rgba(165, 165, 165, .1);
+    animation: pulse 1.2s infinite ease-in-out;
+    -webkit-animation: pulse 1.2s infinite ease-in-out;
+}
+
+.ph-row {
+    width: 80%;
+    margin: 15px 0;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.ph-col {
+    width: 90%;
+    height: 20px;
+    background-color: rgba(165, 165, 165, .1);
+    animation: pulse 1.2s infinite ease-in-out;
+    -webkit-animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(165, 165, 165, .1);
+    }
+
+    50% {
+        background-color: rgba(165, 165, 165, .2);
+    }
+
+    100% {
+        background-color: rgba(165, 165, 165, .1);
+    }
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        background-color: rgba(165, 165, 165, .1);
+    }
+
+    50% {
+        background-color: rgba(165, 165, 165, .2);
+    }
+
+    100% {
+        background-color: rgba(165, 165, 165, .1);
+    }
+}
+
+/* End Placeholders */
+
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.users__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.user-card {
+    margin: 5px;
+    background-color: var(--inverse-bg-color);
+    color: var(--inverse-text-color);
+    display: flex;
+    flex-direction: column;
+    width: calc(20% - 10px);
+    min-width: 233px;
+    height: auto;
+    cursor: pointer;
+}
+
+
+/* Start Popups */
+.popup-section {
+    padding: 20px;
+    width: 100vh;
+    height: 100vh;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup-closer {
+    display: block;
+}
+
+.popup--chat {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 1215px;
+    width: 100%;
+    min-height: 320px;
+    justify-content: flex-end;
+    background-color: #000;
+    color: #fff;
+}
+
+.user-info {
+    display: flex;
+    background-color: #000;
+    color: #fff;
+}
+
+.popup__user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.chat {
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: #fff;
+}
+
+.chat__messages-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-height: 450px;
+    width: 100%;
+    overflow: auto;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: auto;
+    height: 100%;
+    margin: 10px 15px;
+}
+
+.message-time {
+    font-size: 15px;
+    color: #A3A3A3;
+    margin-right: 15px;
+}
+
+.message-text {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    padding: 20px;
+    font-size: 20px;
+    background-color: pink;
+    color: #fff;
+    overflow-wrap: anywhere;
+}
+
+#messagesInput {
+    width: 100%;
+    min-height: 40px;
+    padding: 10px 30px 10px 20px;
+}
+
+/* Ens Popups */
+
+.hide {
+    display: none;
+}

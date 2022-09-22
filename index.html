@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div class="popup-section">
+
+        </div>
+
+        <aside>
+            <form id="options" onsubmit="return false">
+                <input type="checkbox" id="toggle">
+
+                <input id="usersLimitInput" type="number" name="usersLimitInput" value="200">
+                <label for="usersLimitInput">Users limit for app, only for testing.</label><br><br>
+
+                <button type="button" id="usersLimitAcceptButton">Change Users Limit</button>
+                <button type="button" id="usersLimitResetButton">Return Default Value</button>
+            </form><br><br>
+
+            <form id="filter" onsubmit="return false">
+                <input type="search" name="search" placeholder="Type something"><br><br>
+
+                <input type="radio" name="sorters" id="ageASC" value="ageASC">
+                <label for="ageMore">ageAscending</label><br>
+                <input type="radio" name="sorters" id="ageDESC" value="ageDESC">
+                <label for="ageLess">ageDescending</label><br><br>
+
+                <input type="radio" name="sorters" id="nameASC" value="nameASC">
+                <label for="ageMore">nameAscending</label><br>
+                <input type="radio" name="sorters" id="nameDESC" value="nameDESC">
+                <label for="ageLess">nameDescending</label><br><br>
+
+                <input type="radio" name="gender" id="male" value="male">
+                <label for="male">male</label>
+
+                <input type="radio" name="gender" id="female" value="female">
+                <label for="female">female</label>
+
+                <input type="radio" name="gender" id="all" value="all" checked>
+                <label for="all">all</label><br>
+
+                <button type="reset" id="resetButton">Reset</button>
+            </form>
+        </aside>
+
+        <main class="users">
+
+        </main>
+
+        <footer>footer - franchukv - footer</footer>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
