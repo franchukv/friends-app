@@ -7,12 +7,12 @@ function transformToURL(filters) {
             return `${key}=${value}`;
         }).join('&');
 
-    return `?${query}`
+    return `?${query}`;
 }
 
 async function syncURL(filters) {
     const query = transformToURL(filters);
-    window.history.replaceState('url', '', `${query}`)
+    window.history.replaceState('url', '', `${query}`);
 }
 
 export default syncURL;

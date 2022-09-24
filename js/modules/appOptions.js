@@ -1,18 +1,9 @@
-import { themeSwitcher } from './constants.js';
+import { usersLimitInput, usersLimitAcceptButton, usersLimitResetButton } from './constants.js';
 import { renderFirstScreen, } from './render.js';
-import { handlerThemeSwither } from './handlers.js';
 
-const defaultLimitOfUsers = 200;
+const defaultLimitOfUsers = 20;
 const usersPerPage = 20;
 let limitOfUsers = defaultLimitOfUsers;
-
-function initLocalStorage() {
-    if (localStorage.getItem('theme')) {
-        document.documentElement.setAttribute('theme', 'dark');
-    } else {
-        document.documentElement.removeAttribute('theme');
-    }
-}
 
 function initAppOptions() {
     let inputValue = Number(usersLimitInput.value);
@@ -22,7 +13,7 @@ function initAppOptions() {
     usersLimitInput.addEventListener('input', () => {
         inputValue = Number(usersLimitInput.value);
         stateDefault = limitOfUsers === defaultLimitOfUsers && inputValue === defaultLimitOfUsers ? true : false;
-    })
+    });
 
     usersLimitAcceptButton.addEventListener('click', () => {
         if (stateDefault || inputValue === limitOfUsers) { return; }
@@ -30,14 +21,10 @@ function initAppOptions() {
         limitOfUsers = inputValue;
         renderFirstScreen();
 
-        if (limitOfUsers != defaultLimitOfUsers) {
-            usersLimitResetButton.removeAttribute('disabled');
-        }
+        if (limitOfUsers != defaultLimitOfUsers) { usersLimitResetButton.removeAttribute('disabled'); }
 
-        if (limitOfUsers === defaultLimitOfUsers) {
-            usersLimitResetButton.setAttribute('disabled', '');
-        }
-    })
+        if (limitOfUsers === defaultLimitOfUsers) { usersLimitResetButton.setAttribute('disabled', ''); }
+    });
 
     usersLimitResetButton.addEventListener('click', () => {
         if (stateDefault) { return; }
@@ -46,17 +33,12 @@ function initAppOptions() {
         usersLimitInput.value = defaultLimitOfUsers;
         usersLimitResetButton.setAttribute('disabled', '');
         renderFirstScreen();
-    })
-
-    themeSwitcher.addEventListener('click', () => {
-        handlerThemeSwither();
     });
 }
 
 export {
     initAppOptions,
-    initLocalStorage,
     limitOfUsers,
     usersPerPage,
     defaultLimitOfUsers
-}
+};

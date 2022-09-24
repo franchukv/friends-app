@@ -3,6 +3,7 @@ import syncURL from './historyAPI.js';
 import { users } from './constants.js';
 import { limitOfUsers, usersPerPage } from './appOptions.js';
 import { searchByName, filterByGender, uncheckFilter } from './filters.js';
+
 import {
     handlerScroll,
     handlerFilter,
@@ -20,17 +21,29 @@ let hasUsersToLoad;
 let isSorted = false;
 let shouldLoad = true;
 
+function generateUsersNetworkStatus() {
+    const result = Math.floor(Math.random() * 2);
+    if (result) {
+        return 'online';
+    } else {
+        return 'offline';
+    }
+}
+
 function composeUserCard(user) {
+    const userStatus = generateUsersNetworkStatus();
     const userCard = `
         <div class="user-card">
-            <img class="user-avatar" src="${user.picture.large}"> 
-            <span class="user-name">${user.name.first} ${user.name.last}</span>
-            <span class="user-age">${user.dob.age}</span>
-            <span class="user-gender">${user.gender}</span>
-            <div class="user-location">
-                <span class="user-location__city">${user.location.city}</span>
-                <span class="user-location__state">${user.location.state}</span>
-                <span class="user-location__country">${user.location.country}</span>
+            <span class="user-card__status user-card__status--${userStatus}">${userStatus}</span>
+            <img class="user-card__avatar" src="${user.picture.large}"> 
+            <span class="user-card__name">${user.name.first} ${user.name.last}</span>
+            <div class="user-card__info">
+                <span class="user-card__info-gender">${user.gender},</span>
+                <span class="user-card__info-age">${user.dob.age} y.o</span>
+            </div>
+            <div class="user-card__location">
+                <span class="user-card__location-city">${user.location.city},</span>
+                <span class="user-card__location-country">${user.location.country}</span>
             </div>
         </div>`;
 
@@ -38,7 +51,7 @@ function composeUserCard(user) {
 }
 
 function appendUserToTempContainer(user) {
-    if (!user) { return };
+    if (!user) { return; }
 
     const userCard = composeUserCard(user);
 
@@ -66,6 +79,8 @@ function checkFilterState() {
     }
 }
 
+
+
 function renderPage(data) {
     if (!shouldLoad) { return; }
 
@@ -75,7 +90,7 @@ function renderPage(data) {
     let endRange = startRange + usersPerPage;
     let paginatedData = data.slice(startRange, endRange);
 
-    renderUsers(paginatedData)
+    renderUsers(paginatedData);
 
     hasUsersToLoad = window.currentPage <= limitOfUsers / usersPerPage;
 
@@ -83,10 +98,14 @@ function renderPage(data) {
         shouldLoad = false;
 
         const endWarning = `
-            <div class="end-warning">Вы просмотрели всех пользователей.</div>
+            <div class="end-warning">
+                You have viewed all users. 
+                <span class="end-warning__span"> You can increase the users limit in the settings.</span>
+            </div>
         `;
+
         users.innerHTML += endWarning;
-    };
+    }
 
     checkFilterState();
 }
@@ -126,5 +145,6 @@ export {
     renderFirstScreen,
     usersData,
     sortedUsersData,
-    switchFlagsAndData
-}
+    switchFlagsAndData,
+    generateUsersNetworkStatus
+};
